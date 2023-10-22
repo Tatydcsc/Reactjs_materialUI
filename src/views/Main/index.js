@@ -17,7 +17,7 @@ const cards = [
     id: 1,
     Imag: "https://media.istockphoto.com/id/1455045956/pt/foto/beach-and-fishing-village-of-firapotamos-on-milos-island-greece.webp?b=1&s=612x612&w=0&k=20&c=BYub0TkfVDh_31PLDTEaxgZ4b164f8r9XYhID_4tF_8=",
     title: "Praia",
-    description: "Viage para Praia nas férias.",
+    description: "Viage com a família para Praia nas férias.",
   },
   {
     id: 2,

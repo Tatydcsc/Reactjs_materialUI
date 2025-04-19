@@ -1,26 +1,33 @@
 import * as React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { Link } from "react-router-dom";
 import NavHeader from "../../components/NavHeader";
-import MyCards from "../../components/MyCards";
 import Footer from "../../components/Footer";
+import Card from "../../components/Card";
 import { cards } from "../../components/Card/data";
+import { Link } from "react-router-dom";
 import CustomButton from "../../components/Button";
 
 const defaultTheme = createTheme();
 
-function App() {
+// Filtrando apenas os cards de destinos (praia, hotel fazenda, neve e cruzeiro)
+const destinos = cards.filter(card => 
+  card.title === "Praia" || 
+  card.title === "Hotel fazenda" || 
+  card.title === "Neve" || 
+  card.title === "Cruzeiro"
+);
+
+function Destinos() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <CssBaseline />
       <NavHeader />
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: "background.paper",
@@ -36,7 +43,7 @@ function App() {
               color="text.primary"
               gutterBottom
             >
-              Viagens
+              Destinos
             </Typography>
             <Typography
               variant="h5"
@@ -44,25 +51,23 @@ function App() {
               color="text.secondary"
               paragraph
             >
-              Venha conhecer os melhores destinos para suas férias.
+              Conheça nossos destinos mais procurados!
             </Typography>
-            <Stack
-              sx={{ pt: 4 }}
-              direction="row"
-              spacing={2}
-              justifyContent="center"
-            >
-              <Link to="/destinos" style={{ textDecoration: 'none' }}>
-                <CustomButton variant="contained">Destinos</CustomButton>
+            <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <CustomButton variant="outlined">Voltar para Home</CustomButton>
               </Link>
-              <Link to="/promocoes" style={{ textDecoration: 'none' }}>
-                <CustomButton variant="outlined">Promoções</CustomButton>
-              </Link>
-            </Stack>
+            </Box>
           </Container>
         </Box>
         <Container sx={{ py: 8 }} maxWidth="md">
-          <MyCards cards={cards} />
+          <Grid container spacing={4}>
+            {destinos.map((card) => (
+              <Grid item key={card.id} xs={12} sm={6} md={6}>
+                <Card card={card} />
+              </Grid>
+            ))}
+          </Grid>
         </Container>
       </main>
       <Footer />
@@ -70,4 +75,4 @@ function App() {
   );
 }
 
-export default App;
+export default Destinos; 
